@@ -25,3 +25,8 @@ Many businesses lack a basic billing application and often resort to using pen a
 - **Interactive User Interface**: The frontend will be built using React, ensuring an interactive and responsive user experience.
 - **Ease of Use**: The application will be designed to be user-friendly, allowing users to navigate effortlessly.
 - **Customizable**: Users will have the ability to customize their invoicing experience according to their specific needs.
+
+## Day-by-Day Plan
+
+- **12-02-2025**: Complete the Low-Fidelity Design (LoFiD).
+- **13-02-2025**: Work on the High-Fidelity Design (HiFiD).
