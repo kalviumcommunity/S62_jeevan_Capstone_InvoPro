@@ -30,3 +30,6 @@ Many businesses lack a basic billing application and often resort to using pen a
 
 - **12-02-2025**: Complete the Low-Fidelity Design (LoFiD).
 - **13-02-2025**: Work on the High-Fidelity Design (HiFiD).
+- **14-02-2025**: Using GET API in my project
+- **15-02-2025**: Using POST API in my project
+- **16-02-2025**: Using PUT API in my project
