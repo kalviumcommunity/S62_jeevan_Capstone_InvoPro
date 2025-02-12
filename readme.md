@@ -38,8 +38,14 @@ Many businesses lack a basic billing application and often resort to using pen a
 
 ## Initialized a react/frontend application
 
-Here i have initialized a frontend react app in the `Client` folder
+Here I have initialized a frontend react app in the `Client` folder.
 
 I have used `npm create vite@latest` to create a new vite app. This is a simple and fast way to create a new react app.
 
 ---
+
+## Added Schema for the backend
+
+- **Models Folder**: A new folder named `model` has been created to organize the data models for the application.
+- **User Model**: Defines the structure for user data, including fields for name, email, and password.
+- **Product Model**: Defines the structure for product data, including fields for name, price, description, quantity, and image.
