@@ -59,8 +59,50 @@ const createProductController = async (req, res) => {
   }
 };
 
+const updateProductController = async (req, res) => {
+  const { name, price, description, quantity } = req.body;
+  const { id } = req.query;
+  try {
+    if (!name || !price || !description || !quantity) {
+      return res
+        .status(400)
+        .send({ message: "Please fill all fields", success: false });
+    }
+
+    const checkProductPresent = await productModel.findOne({ _id: id });
+    if (!checkProductPresent) {
+      return res
+        .status(400)
+        .send({ message: "Product not present", success: false });
+    }
+    const data = await productModel.findByIdAndUpdate(
+      { _id: id },
+      {
+        name,
+        price,
+        description,
+        quantity,
+      },
+      { new: true }
+    );
+
+    return res.status(201).send({
+      message: "data updated successfully",
+      success: true,
+      data: data,
+    });
+  } catch (error) {
+    return res.status(500).send({
+      message: "Internal server error",
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   getProductController,
   getSingleProductController,
   createProductController,
+  updateProductController,
 };
