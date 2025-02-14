@@ -67,8 +67,50 @@ const createUserController = async (req, res) => {
   }
 };
 
+const updateUserController = async (req, res) => {
+  const { name, email, password } = req.body;
+  const { id } = req.query;
+  try {
+    if (!id) {
+      return res.status(400).send({ message: "id is required" });
+    }
+
+    if (!name || !email || !password) {
+      return res.status(400).send({ message: "all fields are required" });
+    }
+
+    const checkUserPresent = await UserModel.findOne({ email: email });
+    if (!checkUserPresent) {
+      return res.status(400).send({ message: "user not present" });
+    }
+
+    const data = await UserModel.findByIdAndUpdate(
+      { _id: id },
+      {
+        name,
+        email,
+        password,
+      },
+      { new: true }
+    );
+
+    return res.status(201).send({
+      message: "user data updated successfully",
+      success: true,
+      data: data,
+    });
+  } catch (error) {
+    return res.status(500).send({
+      message: "Internal server error",
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   getUserController,
   getSingleUserController,
   createUserController,
+  updateUserController,
 };

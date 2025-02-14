@@ -61,3 +61,8 @@ I have used `npm create vite@latest` to create a new vite app. This is a simple 
 
 - **POST /users**: Creates a new user.
 - **POST /products**: Creates a new product.
+
+## Added PUT API Endpoints
+
+- **PUT /users**: Updates an existing user.
+- **PUT /products**: Updates an existing product.
