@@ -9,6 +9,6 @@ const router = express.Router();
 router.get("/get-product/", getProductController);
 router.get("/get-single-product/", getSingleProductController);
 
-router.post("/create-product", createProductController);
+router.post("/create-product/", createProductController);
 
 module.exports = router;

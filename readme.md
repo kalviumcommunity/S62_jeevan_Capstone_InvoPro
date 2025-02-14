@@ -56,3 +56,8 @@ I have used `npm create vite@latest` to create a new vite app. This is a simple 
 - **GET /products**: Retrieves a list of all products.
 - **GET /users/single**: Retrieves a single user.
 - **GET /products/single**: Retrieves a single product.
+
+## Added POST API Endpoints
+
+- **POST /users**: Creates a new user.
+- **POST /products**: Creates a new product.
