@@ -49,3 +49,10 @@ I have used `npm create vite@latest` to create a new vite app. This is a simple 
 - **Models Folder**: A new folder named `model` has been created to organize the data models for the application.
 - **User Model**: Defines the structure for user data, including fields for name, email, and password.
 - **Product Model**: Defines the structure for product data, including fields for name, price, description, quantity, and image.
+
+## Added GET API Endpoints
+
+- **GET /users**: Retrieves a list of all users.
+- **GET /products**: Retrieves a list of all products.
+- **GET /users/single**: Retrieves a single user.
+- **GET /products/single**: Retrieves a single product.
