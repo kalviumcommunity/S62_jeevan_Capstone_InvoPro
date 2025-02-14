@@ -6,13 +6,14 @@ const getProductController = async (req, res) => {
 
     return res
       .status(200)
-      .send({ message: "Data fetched successfully ", data: data });
+      .send({ message: "Product Data fetched successfully ", data: data });
   } catch (error) {
     return res
       .status(500)
       .send({ message: "internal server error", success: false });
   }
 };
+
 const getSingleProductController = async (req, res) => {
   const { id } = req.query;
   try {
@@ -25,7 +26,7 @@ const getSingleProductController = async (req, res) => {
 
     return res
       .status(200)
-      .send({ message: "Data fetched successfully ", data: data });
+      .send({ message: "Product Data fetched successfully ", data: data });
   } catch (error) {
     return res
       .status(500)
@@ -33,4 +34,33 @@ const getSingleProductController = async (req, res) => {
   }
 };
 
-module.exports = { getProductController, getSingleProductController };
+const createProductController = async (req, res) => {
+  const { name, price, description, quantity } = req.body;
+  try {
+    if (!name || !price || !description || !quantity) {
+      return res
+        .status(400)
+        .send({ message: "Please fill all fields", success: false });
+    }
+    const data = await productModel.create({
+      name,
+      price,
+      description,
+      quantity,
+    });
+
+    return res
+      .status(201)
+      .send({ message: "Product created successfully", data: data });
+  } catch (error) {
+    return res
+      .status(500)
+      .send({ message: "internal server error", success: false });
+  }
+};
+
+module.exports = {
+  getProductController,
+  getSingleProductController,
+  createProductController,
+};
