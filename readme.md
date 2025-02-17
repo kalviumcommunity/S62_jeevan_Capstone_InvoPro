@@ -66,3 +66,8 @@ I have used `npm create vite@latest` to create a new vite app. This is a simple 
 
 - **PUT /users**: Updates an existing user.
 - **PUT /products**: Updates an existing product.
+
+## Added DELETE API Endpoints For CURD operation
+
+- **DELETE /users**: Deletes a user.
+- **DELETE /products**: Deletes a product.

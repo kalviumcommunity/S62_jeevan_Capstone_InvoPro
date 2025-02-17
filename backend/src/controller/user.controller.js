@@ -31,9 +31,11 @@ const getSingleUserController = async (req, res) => {
       success: true,
     });
   } catch (error) {
-    return res
-      .status(500)
-      .send({ message: "internal server error", success: false });
+    return res.status(500).send({
+      message: "internal server error",
+      success: false,
+      error: error.message,
+    });
   }
 };
 
@@ -108,9 +110,36 @@ const updateUserController = async (req, res) => {
   }
 };
 
+const deleteUserController = async (req, res) => {
+  const { id } = req.query;
+  try {
+    const checkUserPresent = await UserModel.findOne({ _id: id });
+    if (!checkUserPresent) {
+      return res.status(404).send({
+        message: "User Not Found",
+        success: false,
+      });
+    }
+
+    const data = await UserModel.findByIdAndDelete(id);
+    return res.status(200).send({
+      message: "user deleted successfully",
+      success: true,
+      data: data,
+    });
+  } catch (error) {
+    return res.status(500).send({
+      message: "Internal server error",
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   getUserController,
   getSingleUserController,
   createUserController,
   updateUserController,
+  deleteUserController,
 };
