@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const productModel = require("../model/product.model");
 
 const getProductController = async (req, res) => {
@@ -39,8 +40,14 @@ const getSingleProductController = async (req, res) => {
 };
 
 const createProductController = async (req, res) => {
-  const { name, price, description, quantity } = req.body;
+  const { name, price, description, quantity, userId } = req.body;
   try {
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res
+        .status(400)
+        .send({ message: "Invalid user id", success: false });
+    }
+
     if (!name || !price || !description || !quantity) {
       return res
         .status(400)
@@ -51,6 +58,7 @@ const createProductController = async (req, res) => {
       price,
       description,
       quantity,
+      userId,
     });
 
     return res
@@ -66,9 +74,15 @@ const createProductController = async (req, res) => {
 };
 
 const updateProductController = async (req, res) => {
-  const { name, price, description, quantity } = req.body;
+  const { name, price, description, quantity, userId } = req.body;
   const { id } = req.query;
   try {
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res
+        .status(400)
+        .send({ message: "Invalid user id", success: false });
+    }
+
     if (!name || !price || !description || !quantity) {
       return res
         .status(400)
@@ -88,6 +102,7 @@ const updateProductController = async (req, res) => {
         price,
         description,
         quantity,
+        userId,
       },
       { new: true }
     );

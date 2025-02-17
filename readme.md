@@ -71,3 +71,8 @@ I have used `npm create vite@latest` to create a new vite app. This is a simple 
 
 - **DELETE /users**: Deletes a user.
 - **DELETE /products**: Deletes a product.
+
+## Added RELATION between DATABASE
+
+- **User Model**: Has many products.
+- **Product Model**: Belongs to user.
