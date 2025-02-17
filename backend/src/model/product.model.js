@@ -7,6 +7,7 @@ const productSchema = new mongoose.Schema(
     description: { type: String, required: false },
     quantity: { type: Number, default: 0, min: 0 },
     image: { type: String, required: false },
+    userId: { type: mongoose.Types.ObjectId, ref: "User" },
   },
   { timestamps: true }
 );
