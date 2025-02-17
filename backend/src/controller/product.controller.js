@@ -8,9 +8,11 @@ const getProductController = async (req, res) => {
       .status(200)
       .send({ message: "Product Data fetched successfully ", data: data });
   } catch (error) {
-    return res
-      .status(500)
-      .send({ message: "internal server error", success: false });
+    return res.status(500).send({
+      message: "internal server error",
+      success: false,
+      error: error.message,
+    });
   }
 };
 
@@ -28,9 +30,11 @@ const getSingleProductController = async (req, res) => {
       .status(200)
       .send({ message: "Product Data fetched successfully ", data: data });
   } catch (error) {
-    return res
-      .status(500)
-      .send({ message: "internal server error", success: false });
+    return res.status(500).send({
+      message: "internal server error",
+      success: false,
+      error: error.message,
+    });
   }
 };
 
@@ -53,9 +57,11 @@ const createProductController = async (req, res) => {
       .status(201)
       .send({ message: "Product created successfully", data: data });
   } catch (error) {
-    return res
-      .status(500)
-      .send({ message: "internal server error", success: false });
+    return res.status(500).send({
+      message: "internal server error",
+      success: false,
+      error: error.message,
+    });
   }
 };
 
@@ -100,9 +106,36 @@ const updateProductController = async (req, res) => {
   }
 };
 
+const deleteProductController = async (req, res) => {
+  const { id } = req.query;
+  try {
+    const checkProductPresent = await productModel.findOne({ _id: id });
+    if (!checkProductPresent) {
+      return res.status(404).send({
+        message: "Product not found",
+        success: false,
+      });
+    }
+
+    const data = await productModel.findByIdAndDelete({ _id: id });
+    return res.status(200).send({
+      message: "Product deleted successfully",
+      success: true,
+      data: data,
+    });
+  } catch (error) {
+    return res.status(500).send({
+      message: "Internal server error",
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   getProductController,
   getSingleProductController,
   createProductController,
   updateProductController,
+  deleteProductController,
 };
