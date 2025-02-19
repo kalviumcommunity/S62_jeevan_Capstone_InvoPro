@@ -2,8 +2,9 @@ const { default: mongoose } = require("mongoose");
 const productModel = require("../model/product.model");
 
 const getProductController = async (req, res) => {
+  const { userId } = req.query;
   try {
-    const data = await productModel.find();
+    const data = await productModel.find({ userId: userId });
 
     return res
       .status(200)
