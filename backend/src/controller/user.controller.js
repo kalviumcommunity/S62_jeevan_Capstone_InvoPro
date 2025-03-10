@@ -17,9 +17,9 @@ const getUserController = async (req, res) => {
 };
 
 const getSingleUserController = async (req, res) => {
-  const { id } = req.query;
+  const { email } = req.email;
   try {
-    const data = await UserModel.findOne({ _id: id });
+    const data = await UserModel.findOne({ email: email });
 
     if (!data) {
       return res.status(400).send({ message: "user data not found" });
