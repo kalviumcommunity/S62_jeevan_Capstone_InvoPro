@@ -13,11 +13,14 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/users", {
-        name,
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "http://localhost:8080/user/create-user",
+        {
+          name,
+          email,
+          password,
+        }
+      );
       if (response.data.success) {
         navigate("/login");
       }
