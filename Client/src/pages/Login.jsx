@@ -11,9 +11,9 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get(
+      const response = await axios.post(
         "http://localhost:8080/user/get-single-user/",
-        { params: { email, password } }
+       { email, password } 
       );
 
       if (response.data.success) {

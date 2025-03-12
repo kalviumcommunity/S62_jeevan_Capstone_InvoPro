@@ -9,8 +9,8 @@ const {
 const router = express.Router();
 
 router.get("/get-user/", getUserController);
-router.get("/get-single-user/", getSingleUserController);
 
+router.post("/get-single-user/", getSingleUserController);
 router.post("/create-user/", createUserController);
 
 router.put("/update-user/", updateUserController);
