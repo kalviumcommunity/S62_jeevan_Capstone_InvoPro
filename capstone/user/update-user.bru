@@ -1,0 +1,24 @@
+meta {
+  name: update-user
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:8080/user/update-user?id=67af0a4df699b7536ad0fc8c
+  body: json
+  auth: none
+}
+
+params:query {
+  id: 67af0a4df699b7536ad0fc8c
+}
+
+body:json {
+  {
+    "name":"jee3",
+    "email":"jeeva3@gmail.com",
+    "password":"nonononono"
+  
+  }
+}
