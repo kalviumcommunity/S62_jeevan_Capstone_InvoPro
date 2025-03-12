@@ -1,4 +1,5 @@
 const UserModel = require("../model/user.model");
+const bcrypt = require("bcrypt");
 
 const getUserController = async (req, res) => {
   try {
@@ -17,12 +18,20 @@ const getUserController = async (req, res) => {
 };
 
 const getSingleUserController = async (req, res) => {
-  const { email } = req.email;
+const { email, password } = req.query;
   try {
     const data = await UserModel.findOne({ email: email });
 
     if (!data) {
-      return res.status(400).send({ message: "user data not found" });
+      return res
+        .status(400)
+        .send({ message: "user data not found", data: data });
+    }
+
+
+    const isPasswordMatch = await bcrypt.compare(password, data.password);
+    if (!isPasswordMatch) {
+      return res.status(400).send({ message: "invalid password" });
     }
 
     res.status(200).send({
@@ -51,10 +60,12 @@ const createUserController = async (req, res) => {
       return res.status(400).send({ message: "user already present" });
     }
 
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const data = await UserModel.create({
       name,
       email,
-      password,
+      password: hashedPassword,
     });
 
     return res

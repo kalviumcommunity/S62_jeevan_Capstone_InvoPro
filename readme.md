@@ -76,3 +76,7 @@ I have used `npm create vite@latest` to create a new vite app. This is a simple 
 
 - **User Model**: Has many products.
 - **Product Model**: Belongs to user.
+
+## Added Authentication
+
+- **Controller**: In the controller, i added authentication using bcrypt

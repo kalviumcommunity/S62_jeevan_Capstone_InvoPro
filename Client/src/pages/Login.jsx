@@ -11,7 +11,11 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/login", { email, password });
+      const response = await axios.get(
+        "http://localhost:8080/user/get-single-user/",
+        { params: { email, password } }
+      );
+
       if (response.data.success) {
         navigate("/");
       }
