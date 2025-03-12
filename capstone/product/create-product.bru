@@ -1,0 +1,21 @@
+meta {
+  name: create-product
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8080/product/create-product/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name":"pant",
+    "price":50,
+    "description":"it is a pant :)",
+    "quantity":50,
+    "userId":"67af09c9617ee314a77bd0d3"
+  }
+}
