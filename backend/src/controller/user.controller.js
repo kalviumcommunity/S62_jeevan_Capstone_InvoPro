@@ -18,7 +18,7 @@ const getUserController = async (req, res) => {
 };
 
 const getSingleUserController = async (req, res) => {
-const { email, password } = req.query;
+  const { email, password } = req.body;
   try {
     const data = await UserModel.findOne({ email: email });
 
@@ -27,7 +27,6 @@ const { email, password } = req.query;
         .status(400)
         .send({ message: "user data not found", data: data });
     }
-
 
     const isPasswordMatch = await bcrypt.compare(password, data.password);
     if (!isPasswordMatch) {
